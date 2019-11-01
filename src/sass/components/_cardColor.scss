@@ -1,0 +1,8 @@
+.cardColor{
+    padding: 2px;
+    display: block;
+    width: (100% / 3);
+    &_content{
+        padding: 10px;
+    }
+}

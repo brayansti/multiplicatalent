@@ -11,7 +11,7 @@
         :year="post.year"
       />
     </article>
-    <div>
+    <div class="paginator">
         <input type="text" v-model="currentPage">
     </div>
   </div>
@@ -38,7 +38,7 @@ export default {
           this.posts = response.data;
         })
         .catch(response => {
-          console.log(response);
+          this.error = response
         });
     }
   },

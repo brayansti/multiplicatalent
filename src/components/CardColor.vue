@@ -1,7 +1,7 @@
 <template>
     <!-- New boxColor -->
-    <div class="boxColor" :style="boxStyles">
-      <div class="colorsGrid__item_info">
+    <a class="cardColor">
+      <div class="cardColor_content" :style="boxStyles" v-on:click="selectColor(color)">
         <p>
           {{color}}
         </p>
@@ -18,7 +18,7 @@
           {{year}}
         </p>
       </div>
-    </div>
+    </a>
     <!-- END boxColor -->
 </template>
 
@@ -38,14 +38,17 @@ export default {
         "background-color": this.color,
       }
     }
+  },
+  methods:{
+    selectColor : (color) =>{
+      alert(color);
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.boxColor{
-    width: calc(50% - 20px);
-    margin: 10px 10px;
-}
+@import '../sass/main';
+@import '../sass/components/cardColor';
 </style>
