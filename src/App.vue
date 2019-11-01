@@ -1,5 +1,11 @@
 <template>
   <div id="app" v-if="posts">
+    <input class="hidden" id="clipBoard" v-model="clipBoard" type="text">
+    <header>
+      <h1 class="taC pt15 pb15">
+        Colores
+      </h1>
+    </header>
     <article class="colorsGrid">
       <CardColor
         v-for="post in posts.data"
@@ -15,10 +21,13 @@
     <article class="paginator">
       <div class="paginator__content">
         <a :class="currentPage == 1 ? '' : 'active'" class="paginator__arrow paginator__arrow-prev" v-on:click="prevPage()">
-          Anterior
+          <font-awesome-icon icon="chevron-left" />
+          <span>Anterior</span>
         </a>
+        <p> {{currentPage}} / {{posts.total_pages}}</p>
         <a :class="currentPage == posts.total_pages ? '' : 'active'" class="paginator__arrow paginator__arrow-next" v-on:click="nextPage()">
-          Siguente
+          <span>Siguente</span>
+          <font-awesome-icon icon="chevron-right" />
         </a>
       </div>
     </article>
@@ -29,6 +38,11 @@
 import CardColor from './components/CardColor.vue'
 import axios from 'axios'
 
+// Icons
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faChevronRight , faChevronLeft, faEyeDropper } from '@fortawesome/free-solid-svg-icons'
+library.add(faChevronRight , faChevronLeft, faEyeDropper)
+
 export default {
   name: 'app',
   data () {
@@ -37,15 +51,17 @@ export default {
       posts: null,
       error: null,
       currentPage: 1,
+      clipBoard: '',
     }
   },
   methods: {
+    // Method to call data
     getPosts () {
+      // Tarameters to get Data
       const parameters = {
         url: 'https://reqres.in/api/colors',
         per_page: 9
       };
-      console.time('consulta')
       axios.get(`${parameters.url}?page=${this.currentPage}&per_page=${parameters.per_page}`)
         .then(response => {
           this.posts = response.data
@@ -53,7 +69,6 @@ export default {
         .catch(response => {
           this.error = response
         });
-        console.timeEnd('consulta')
     },
     prevPage () {
       this.currentPage--
@@ -80,26 +95,9 @@ export default {
 <style lang="scss">
   @import './sass/main';
   @import './sass/components/flexgrid';
-  .paginator{
-    padding: 20px;
-    &__content{
-      display: flex;
-      justify-content: space-between;
-    }
-    &__arrow{
-      padding: 15px;
-      display: block;
-      background-color: #efefef;
-      border: 1px solid #ccc;
-      user-select: none;
-      pointer-events: none;
-      opacity: 0.5;
-      &.active{
-        opacity: 1;
-        pointer-events: all;
-      }
-      &-prev{}
-      &-next{}
-    }
+  @import './sass/components/paginator';
+  header{
+    color: $white;
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
   }
 </style>

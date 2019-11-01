@@ -3,7 +3,10 @@
     <a class="cardColor animated fadeIn" :id="`indexCard_${id}`">
       <div class="cardColor_color" :style="boxStyles" v-on:click="selectColor(color)">
         <div class="cardColor_content">
-          <div>
+          <p class="cardColor_content_txt cardColor_content_txt--year">
+            {{year}}
+          </p>
+          <div class="cardColor_content_txt cardColor_content_txt--center">
             <p>
               {{name}}
             </p>
@@ -11,12 +14,12 @@
               {{color}}
             </p>
           </div>
-          <p>
+          <p class="cardColor_content_txt cardColor_content_txt--pantone">
             {{pantone_value}}
           </p>
-          <p>
-            {{year}}
-          </p>
+          <div class="cardColor_content_copy">
+            <font-awesome-icon icon="eye-dropper" />
+          </div>
         </div>
       </div>
     </a>
@@ -41,8 +44,20 @@ export default {
     }
   },
   methods:{
-    selectColor : (color) =>{
-      alert(color);
+    selectColor : function(color){
+      // Wait to input value change
+      let addColorToInput = () =>{
+        return new Promise( (resolve)=>{
+          this.$parent.clipBoard = color
+          resolve()
+        } )
+      }
+      // After value change
+      addColorToInput().then( () =>{
+        const inputToCopy = document.getElementById('clipBoard')
+        inputToCopy.select()
+        document.execCommand("copy")
+      })
     }
   }
 }

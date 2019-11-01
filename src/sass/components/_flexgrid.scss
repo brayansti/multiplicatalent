@@ -1,5 +1,8 @@
 .colorsGrid{
     display: flex;
     flex-wrap: wrap;
-    height: 70vh;
+    height: calc(100vh - #{67px + 48px});
+    @media #{$mediaMobile}{
+    	height: auto;
+    }
 }
