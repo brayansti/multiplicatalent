@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <article class="colorsGrid" v-if="posts">
+  <div id="app" v-if="posts">
+    <article class="colorsGrid">
       <CardColor
         v-for="post in posts.data"
         v-bind:key="post.id"
@@ -41,10 +41,14 @@ export default {
   },
   methods: {
     getPosts () {
+      const parameters = {
+        url: 'https://reqres.in/api/colors',
+        per_page: 9
+      };
       console.time('consulta')
-      axios.get('https://reqres.in/api/colors?page='+this.currentPage)
+      axios.get(`${parameters.url}?page=${this.currentPage}&per_page=${parameters.per_page}`)
         .then(response => {
-          this.posts = response.data;
+          this.posts = response.data
         })
         .catch(response => {
           this.error = response

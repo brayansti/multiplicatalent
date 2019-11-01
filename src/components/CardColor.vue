@@ -1,22 +1,23 @@
 <template>
     <!-- New boxColor -->
-    <a class="cardColor animated fadeIn">
-      <div class="cardColor_content" :style="boxStyles" v-on:click="selectColor(color)">
-        <p>
-          {{color}}
-        </p>
-        <p>
-          {{id}}
-        </p>
-        <p>
-          {{name}}
-        </p>
-        <p>
-          {{pantone_value}}
-        </p>
-        <p>
-          {{year}}
-        </p>
+    <a class="cardColor animated fadeIn" :id="`indexCard_${id}`">
+      <div class="cardColor_color" :style="boxStyles" v-on:click="selectColor(color)">
+        <div class="cardColor_content">
+          <div>
+            <p>
+              {{name}}
+            </p>
+            <p>
+              {{color}}
+            </p>
+          </div>
+          <p>
+            {{pantone_value}}
+          </p>
+          <p>
+            {{year}}
+          </p>
+        </div>
       </div>
     </a>
     <!-- END boxColor -->
@@ -47,7 +48,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" attribute to limit CSS cardColorto this component only -->
 <style scoped lang="scss">
 @import '../sass/main';
 @import '../sass/components/cardColor';

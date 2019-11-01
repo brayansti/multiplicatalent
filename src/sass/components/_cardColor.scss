@@ -1,7 +1,12 @@
 .cardColor{
     padding: 2px;
-    display: block;
+    display: flex;
     width: (100% / 3);
+    height: (100% / 3);
+    @include fontSize(14);
+    &_color{
+        width: 100%;
+    }
     &_content{
         padding: 10px;
     }
