@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <article class="colorsGrid">
+    <article class="colorsGrid" v-if="posts">
       <CardColor
         v-for="post in posts.data"
         v-bind:key="post.id"

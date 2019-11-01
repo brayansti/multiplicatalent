@@ -24,13 +24,13 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'CardColor',
   props: {
     color: String,
-    id: String,
+    id: Number,
     name: String,
     pantone_value: String,
-    year: String,
+    year: Number,
   },
   computed: {
     boxStyles(){
