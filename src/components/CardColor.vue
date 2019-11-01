@@ -1,6 +1,6 @@
 <template>
     <!-- New boxColor -->
-    <a class="cardColor">
+    <a class="cardColor animated fadeIn">
       <div class="cardColor_content" :style="boxStyles" v-on:click="selectColor(color)">
         <p>
           {{color}}
@@ -51,4 +51,5 @@ export default {
 <style scoped lang="scss">
 @import '../sass/main';
 @import '../sass/components/cardColor';
+@import '../sass/libraries/animateCSS';
 </style>
