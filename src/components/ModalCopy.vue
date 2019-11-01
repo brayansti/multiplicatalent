@@ -32,23 +32,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS cardColorto this component only -->
 <style scoped lang="scss">
 @import '../sass/main';
-.modalCopy{
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  position: fixed;
-  pointer-events: none;
-  opacity: 0.9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &__content{
-    color: $white;
-    h2{
-      @include fontSize(50);
-    }
-  }
-}
+@import '../sass/components/modalCopy';
 </style>

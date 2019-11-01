@@ -109,8 +109,6 @@ export default {
   }
   header{
     color: $white;
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-      background: linear-gradient(to right, #3a6186, #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: linear-gradient(to right, #3a6186, #89253e);
   }
 </style>
