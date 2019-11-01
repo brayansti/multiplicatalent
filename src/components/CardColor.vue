@@ -58,6 +58,12 @@ export default {
         inputToCopy.select()
         document.execCommand("copy")
       })
+
+      // Open Modal
+      this.$parent.openModal = true
+      setTimeout(() => {
+        this.$parent.openModal = false
+      }, 1000);
     }
   }
 }
@@ -67,5 +73,4 @@ export default {
 <style scoped lang="scss">
 @import '../sass/main';
 @import '../sass/components/cardColor';
-@import '../sass/libraries/animateCSS';
 </style>

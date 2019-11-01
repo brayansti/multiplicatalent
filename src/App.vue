@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-if="posts">
-    <input class="hidden" id="clipBoard" v-model="clipBoard" type="text">
+    <input class="hide" id="clipBoard" v-model="clipBoard" type="text">
     <header>
       <h1 class="taC pt15 pb15">
         Colores
@@ -31,12 +31,15 @@
         </a>
       </div>
     </article>
+
+    <ModalCopy v-if="openModal" :color="clipBoard" />
   </div>
 </template>
 
 <script>
-import CardColor from './components/CardColor.vue'
 import axios from 'axios'
+import CardColor from './components/CardColor.vue'
+import ModalCopy from './components/ModalCopy'
 
 // Icons
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -52,6 +55,7 @@ export default {
       error: null,
       currentPage: 1,
       clipBoard: '',
+      openModal: false,
     }
   },
   methods: {
@@ -86,7 +90,8 @@ export default {
     }
   },
   components: {
-    CardColor
+    CardColor,
+    ModalCopy
   }
 }
 </script>
@@ -94,10 +99,18 @@ export default {
 <!-- Global Styles -->
 <style lang="scss">
   @import './sass/main';
+  @import './sass/libraries/animateCSS';
   @import './sass/components/flexgrid';
   @import './sass/components/paginator';
+  #clipBoard{
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+  }
   header{
     color: $white;
     background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+      background: linear-gradient(to right, #3a6186, #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   }
 </style>
